@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cki13wk4t16kq"]
+
+[ext_resource type="Script" uid="uid://bfxqdt6rfqb48" path="res://test.gd" id="1_2au82"]
+[ext_resource type="PackedScene" uid="uid://cn1m4rswdouy6" path="res://turrets/weapons/projectiles/homing_rocket.tscn" id="2_2au82"]
+[ext_resource type="PackedScene" uid="uid://xq6avsjhn6fv" path="res://mobs/Mob.tscn" id="2_njov2"]
+
+[node name="Test" type="Node2D"]
+script = ExtResource("1_2au82")
+
+[node name="Mob" parent="." instance=ExtResource("2_njov2")]
+position = Vector2(1732, 928.99994)
+rotation = -0.86475664
+
+[node name="HomingRocket" parent="." instance=ExtResource("2_2au82")]
+position = Vector2(1096, 231)
+rotation = 1.8256516
+
+[node name="HomingRocket2" parent="." instance=ExtResource("2_2au82")]
+position = Vector2(718, 579)
+
+[node name="HomingRocket3" parent="." instance=ExtResource("2_2au82")]
+position = Vector2(259, 165)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(968, 542)

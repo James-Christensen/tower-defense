@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://cn1m4rswdouy6"]
+
+[ext_resource type="Texture2D" uid="uid://bkvot3hdpkuxx" path="res://turrets/weapons/projectiles/missile_flame.png" id="1_2roc8"]
+[ext_resource type="Script" uid="uid://d05tyvixtkjqt" path="res://turrets/weapons/projectiles/homing_rocket.gd" id="1_oh653"]
+[ext_resource type="Texture2D" uid="uid://bf6567v8ax42a" path="res://turrets/weapons/projectiles/homing_missile.png" id="2_q8tos"]
+[ext_resource type="PackedScene" uid="uid://cvl201t68pnm7" path="res://turrets/weapons/projectiles/smoke_trail_particles.tscn" id="3_s37kg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q8tos"]
+size = Vector2(66, 30)
+
+[node name="HomingRocket" type="Area2D"]
+script = ExtResource("1_oh653")
+
+[node name="SmokeTrailParticles" parent="." instance=ExtResource("3_s37kg")]
+position = Vector2(-64, 0)
+
+[node name="MissleFlame" type="Sprite2D" parent="."]
+position = Vector2(-64, 1)
+texture = ExtResource("1_2roc8")
+
+[node name="HomingMissle" type="Sprite2D" parent="."]
+texture = ExtResource("2_q8tos")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-6, 0)
+shape = SubResource("RectangleShape2D_q8tos")

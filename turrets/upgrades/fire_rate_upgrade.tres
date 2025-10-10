@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="TurretUpgrade" load_steps=2 format=3 uid="uid://bmy2qw633r5ly"]
+
+[ext_resource type="Script" uid="uid://2ycpfok7dspb" path="res://turrets/upgrades/turret_upgrade.gd" id="1_tr2f0"]
+
+[resource]
+script = ExtResource("1_tr2f0")
+cost = 150
+attack_rate_change = 0.25
+metadata/_custom_type_script = "uid://2ycpfok7dspb"

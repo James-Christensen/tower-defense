@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="TurretUpgrade" load_steps=2 format=3 uid="uid://cqksx3ec3nd1r"]
+
+[ext_resource type="Script" uid="uid://2ycpfok7dspb" path="res://turrets/upgrades/turret_upgrade.gd" id="1_03lcv"]
+
+[resource]
+script = ExtResource("1_03lcv")
+damage_change = 2.0
+metadata/_custom_type_script = "uid://2ycpfok7dspb"
