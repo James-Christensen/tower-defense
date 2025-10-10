@@ -23,7 +23,7 @@ var hearts: Array[TextureRect] = []
 
 @onready var game_over_menu: Panel = %GameOverMenu
 
-var coins:= 800: set = set_coins
+var coins:= 999: set = set_coins
 @onready var coin_icon: TextureRect = %CoinIcon
 @onready var coin_label: Label = %CoinLabel
 
@@ -31,7 +31,7 @@ var coins:= 800: set = set_coins
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	set_coins(coins)
-	mob_counter.text = "%03d" % remaining_mobs
+	mob_counter.text = "%04d" % remaining_mobs
 	game_over_menu.hide()
 	for heart in heart_container.get_children():
 		hearts.append(heart)

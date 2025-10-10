@@ -6,7 +6,7 @@ var _last_known_position := Vector2.ZERO
 @export var max_distance:= 1500.0
 @onready var traveled_distance:= 0.0
 @export  var speed:= 350
-@export var damage:= 50.0
+@export var damage:= 20.0
 
 
 @onready var smoke_trail_particles: GPUParticles2D = $SmokeTrailParticles
@@ -19,11 +19,7 @@ var drag_factor := 6.0
 func _ready() -> void:
 	monitorable = false
 	z_as_relative = false
-	
-	if target:
-		print("Target Acquired")
-	else:
-		print("Target not found")
+
 	
 
 
@@ -44,13 +40,15 @@ func _physics_process(delta: float) -> void:
 		traveled_distance > max_distance or
 		global_position.distance_to(_last_known_position) < 10.0
 	):
-		explode()
+		explode(_last_known_position )
 
-func explode():
-	var explosion: Node2D = preload("uid://ckr8ohb6e58qg").instantiate()
-	explosion.damage = damage
-	get_tree().current_scene.add_child.call_deferred(explosion)
+func explode(pos: Vector2):
 	
+	var explosion: Node2D = preload("res://turrets/weapons/explosion/Explosion.tscn").instantiate()
+	explosion.damage = damage
+	
+	get_tree().current_scene.add_child.call_deferred(explosion)
+	explosion.position = pos
 	set_deferred("monitoring", false)
 	set_physics_process(false)
 	homing_missle.hide()
@@ -62,4 +60,4 @@ func explode():
 	
 
 func _on_area_entered(_area: Area2D) -> void:
-	explode()
+	explode(_last_known_position)

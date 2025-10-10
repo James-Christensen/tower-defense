@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="TurretUpgrade" load_steps=2 format=3 uid="uid://cqksx3ec3nd1r"]
 
-[ext_resource type="Script" uid="uid://2ycpfok7dspb" path="res://turrets/upgrades/turret_upgrade.gd" id="1_03lcv"]
+[ext_resource type="Script" uid="uid://2ycpfok7dspb" path="res://turrets/upgrades/rocket_launcher.gd" id="1_03lcv"]
 
 [resource]
 script = ExtResource("1_03lcv")

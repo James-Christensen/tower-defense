@@ -50,3 +50,16 @@ func set_stats(new_stats: WeaponStats)->void:
 func update_from_stats() -> void:
 	timer.wait_time = 1.0 / stats.attack_rate
 	_collision_shape_2d.shape.radius = stats.mob_detection_radius
+
+func _find_closest_target() -> Mob:
+	var targets := _area_2d.get_overlapping_areas()
+
+	var closest_target: Mob = null
+	var smallest_distance := INF
+	for target: Area2D in targets:
+		var distance_to_target := global_position.distance_to(target.global_position)
+		if distance_to_target < smallest_distance:
+			smallest_distance = distance_to_target
+			closest_target = target as Mob
+
+	return closest_target
