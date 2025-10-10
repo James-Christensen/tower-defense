@@ -8,8 +8,10 @@ var _last_known_position := Vector2.ZERO
 @export  var speed:= 350
 @export var damage:= 50.0
 
-@export var rotation_speed = 1.5
-var rotation_direction = 0
+
+@onready var smoke_trail_particles: GPUParticles2D = $SmokeTrailParticles
+@onready var missle_flame: Sprite2D = $MissleFlame
+@onready var homing_missle: Sprite2D = $HomingMissle
 
 var velocity := Vector2.ZERO
 var drag_factor := 6.0
@@ -45,9 +47,19 @@ func _physics_process(delta: float) -> void:
 		explode()
 
 func explode():
-	queue_free()
+	var explosion: Node2D = preload("uid://ckr8ohb6e58qg").instantiate()
+	explosion.damage = damage
+	get_tree().current_scene.add_child.call_deferred(explosion)
+	
+	set_deferred("monitoring", false)
+	set_physics_process(false)
+	homing_missle.hide()
+	smoke_trail_particles.emitting = false
+	missle_flame.hide()
+	
+	get_tree().create_timer(0.5).timeout.connect(queue_free)
+	
+	
 
-func _on_area_entered(area: Area2D) -> void:
-	if area is Mob:
-		area.take_damage(damage)
-		explode()
+func _on_area_entered(_area: Area2D) -> void:
+	explode()
