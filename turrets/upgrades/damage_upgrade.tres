@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="TurretUpgrade" load_steps=2 format=3 uid="uid://cqksx3ec3nd1r"]
+[gd_resource type="Resource" script_class="TurretUpgrade" load_steps=3 format=3 uid="uid://cqksx3ec3nd1r"]
 
-[ext_resource type="Script" uid="uid://2ycpfok7dspb" path="res://turrets/upgrades/rocket_launcher.gd" id="1_03lcv"]
+[ext_resource type="PackedScene" uid="uid://oodyfepetn6w" path="res://turrets/weapons/medium_cannon.tscn" id="1_hdgd8"]
+[ext_resource type="Script" uid="uid://2ycpfok7dspb" path="res://turrets/upgrades/rocket_launcher.gd" id="2_g2hfd"]
 
 [resource]
-script = ExtResource("1_03lcv")
-damage_change = 2.0
+script = ExtResource("2_g2hfd")
+damage_change = 5.0
+replacement_weapon = ExtResource("1_hdgd8")
 metadata/_custom_type_script = "uid://2ycpfok7dspb"

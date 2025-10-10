@@ -11,3 +11,6 @@ res://turrets/weapons/rocket_launcher.gd
 res://turrets/upgrades/rocket_launcher.tres
 res://autoload/upgrade_database.gd
 res://autoload/player_ui.gd
+res://turrets/weapons/medium_cannon.tscn
+res://turrets/weapons/medium_cannon.gd
+res://turrets/upgrades/damage_upgrade.tres
