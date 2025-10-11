@@ -1,0 +1,178 @@
+[gd_scene load_steps=13 format=3 uid="uid://n5dv4higyu2u"]
+
+[ext_resource type="Texture2D" uid="uid://c4xhk81padg3j" path="res://turrets/weapons/cannon_160_px.png" id="1_kd3ag"]
+[ext_resource type="Script" uid="uid://ckrej5q3l674s" path="res://turrets/weapons/simple_cannon_level_1.gd" id="2_kd3ag"]
+[ext_resource type="Texture2D" uid="uid://0bgaw6cyhrsb" path="res://turrets/weapons/particle_smoke.png" id="3_2hx6u"]
+
+[sub_resource type="Animation" id="Animation_kd3ag"]
+resource_name = "attack"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Explosion:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.05),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Smoke:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:recoil_offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.5, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 30.0, -10.0, 15.0, -5.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_2hx6u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Explosion:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:recoil_offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_riacc"]
+_data = {
+&"RESET": SubResource("Animation_2hx6u"),
+&"attack": SubResource("Animation_kd3ag")
+}
+
+[sub_resource type="Gradient" id="Gradient_kd3ag"]
+offsets = PackedFloat32Array(0.32302406, 0.44673538, 0.6426117, 1)
+colors = PackedColorArray(1, 1, 1, 1, 16.77929, 18.469584, 0, 0.4862745, 16.77929, 18.469584, 0, 0.4862745, 18.4701, 18.4701, 18.4701, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2hx6u"]
+gradient = SubResource("Gradient_kd3ag")
+width = 48
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Curve" id="Curve_riacc"]
+_data = [Vector2(0, 0.08130705), 0.0, 0.0, 0, 0, Vector2(0.12087911, 0.35790277), 0.0, 0.0, 0, 0, Vector2(0.4358974, 0.3162824), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_tnfxx"]
+curve = SubResource("Curve_riacc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tnfxx"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 5.0
+angle_min = -44.99999
+angle_max = 45.00001
+spread = 90.0
+initial_velocity_min = 100.0
+initial_velocity_max = 250.0
+scale_min = 0.099999994
+scale_max = 0.25
+alpha_curve = SubResource("CurveTexture_tnfxx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2hx6u"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 5.0
+angle_min = -44.99999
+angle_max = 45.00001
+direction = Vector3(-10, 0, 0)
+spread = 90.0
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+angular_velocity_min = -152.80002
+angular_velocity_max = 106.499985
+orbit_velocity_min = -0.24399991
+orbit_velocity_max = 0.25700012
+gravity = Vector3(-40, 0, 0)
+linear_accel_min = -11.580002
+linear_accel_max = 53.379997
+scale_min = 0.099999994
+scale_max = 0.29999998
+color = Color(1, 1, 1, 0.5411765)
+alpha_curve = SubResource("CurveTexture_tnfxx")
+
+[node name="SimpleCannonLevel1" type="Sprite2D"]
+texture = ExtResource("1_kd3ag")
+offset = Vector2(36, 0)
+script = ExtResource("2_kd3ag")
+
+[node name="RocketSpawnPoint" type="Marker2D" parent="."]
+position = Vector2(115, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_riacc")
+}
+
+[node name="Explosion" type="GPUParticles2D" parent="."]
+position = Vector2(115, 0)
+amount = 48
+texture = SubResource("GradientTexture2D_2hx6u")
+lifetime = 0.25
+one_shot = true
+explosiveness = 1.0
+trail_enabled = true
+trail_lifetime = 0.09999999999999999
+process_material = SubResource("ParticleProcessMaterial_tnfxx")
+
+[node name="Smoke" type="GPUParticles2D" parent="."]
+position = Vector2(116, 0)
+emitting = false
+amount = 240
+texture = ExtResource("3_2hx6u")
+lifetime = 0.75
+one_shot = true
+explosiveness = 1.0
+randomness = 0.18
+process_material = SubResource("ParticleProcessMaterial_2hx6u")

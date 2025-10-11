@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TurretUpgrade" load_steps=3 format=3 uid="uid://du5l55g0qo8ul"]
+
+[ext_resource type="Script" uid="uid://2ycpfok7dspb" path="res://turrets/upgrades/turret_upgrade.gd" id="1_mccaj"]
+[ext_resource type="PackedScene" uid="uid://n5dv4higyu2u" path="res://turrets/weapons/SimpleCannon_Level1.tscn" id="1_tvfk8"]
+
+[resource]
+script = ExtResource("1_mccaj")
+mob_detection_radius_change = 30.0
+replacement_weapon = ExtResource("1_tvfk8")
+metadata/_custom_type_script = "uid://2ycpfok7dspb"

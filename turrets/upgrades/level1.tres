@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="TurretUpgrade" load_steps=3 format=3 uid="uid://jbcpr0nyfo72"]
+
+[ext_resource type="PackedScene" uid="uid://n5dv4higyu2u" path="res://turrets/weapons/SimpleCannon_Level1.tscn" id="1_7dvlg"]
+[ext_resource type="Script" uid="uid://2ycpfok7dspb" path="res://turrets/upgrades/turret_upgrade.gd" id="2_tyh5y"]
+
+[resource]
+script = ExtResource("2_tyh5y")
+damage_change = 5.0
+replacement_weapon = ExtResource("1_7dvlg")

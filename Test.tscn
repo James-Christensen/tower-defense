@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bfxqdt6rfqb48" path="res://test.gd" id="1_2au82"]
 [ext_resource type="PackedScene" uid="uid://cn1m4rswdouy6" path="res://turrets/weapons/projectiles/homing_rocket.tscn" id="2_2au82"]
 [ext_resource type="PackedScene" uid="uid://xq6avsjhn6fv" path="res://mobs/Mob.tscn" id="2_njov2"]
-[ext_resource type="PackedScene" uid="uid://70agrdiggdd5" path="res://turrets/weapons/RocketLauncher.tscn" id="4_8tn2x"]
+[ext_resource type="PackedScene" path="res://turrets/weapons/RocketLauncher.tscn" id="4_8tn2x"]
 
 [node name="Test" type="Node2D"]
 script = ExtResource("1_2au82")
