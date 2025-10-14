@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://ccfka302n63ev"]
+[gd_scene load_steps=11 format=4 uid="uid://ccfka302n63ev"]
 
 [ext_resource type="TileSet" uid="uid://buxud23yyccyi" path="res://map/tileset.tres" id="1_7tfo5"]
 [ext_resource type="Script" uid="uid://bm6wm38qrgo7" path="res://mobs/tower_defense.gd" id="1_jbbdg"]
@@ -8,8 +8,6 @@
 [ext_resource type="Resource" uid="uid://drh6vpy0j0520" path="res://waves/wave_1.tres" id="4_jbbdg"]
 [ext_resource type="Resource" uid="uid://cu4ipbwklkphi" path="res://waves/wave_2.tres" id="5_iwc7u"]
 [ext_resource type="Resource" uid="uid://cmxqgtrku8jdw" path="res://waves/wave_3.tres" id="6_s2j7w"]
-[ext_resource type="Script" uid="uid://y7hv1qn4dexx" path="res://turrets/turret.gd" id="9_iwc7u"]
-[ext_resource type="Texture2D" uid="uid://28rkffksa53r" path="res://turrets/turret_base.png" id="9_s2j7w"]
 [ext_resource type="PackedScene" uid="uid://dhv7bxitnqijx" path="res://autoload/coin_collector.tscn" id="11_n70oy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_82ibk"]
@@ -25,7 +23,7 @@ tile_set = ExtResource("1_7tfo5")
 
 [node name="Roads" type="TileMapLayer" parent="."]
 unique_name_in_owner = true
-tile_map_data = PackedByteArray("AAARAAEAAAAFAAAAAAAQAAEAAAACAAAAAAAPAAEAAAACAAAAAAAOAAEAAAACAAAAAAANAAEAAAACAAAAAAAMAAEAAAADAAEAAAAJAAUAAAACAAAAAAAIAAUAAAACAAAAAAAHAAUAAAACAAAAAAAGAAUAAAAAAAEAAAAEAAUAAAAIAAIAAAACAAUAAAABAAEAAAAAAAUAAAACAAAAAAD+/wUAAAAGAAEAAAAGAAQAAAACAAEAAAAGAAMAAAACAAEAAAAGAAIAAAACAAEAAAAGAAEAAAABAAAAAAAFAAEAAAACAAAAAAAEAAEAAAACAAAAAAADAAEAAAACAAAAAAACAAEAAAAAAAAAAAACAAIAAAACAAEAAAACAAMAAAACAAEAAAACAAQAAAACAAEAAAD//wUAAAACAAAAAAABAAUAAAACAAAAAAAMAAIAAAACAAEAAAAMAAQAAAACAAEAAAAMAAUAAAABAAEAAAAKAAUAAAACAAAAAAALAAUAAAACAAAAAAAMAAMAAAACAAEAAAAMAAAAAAACAAEAAAAMAP//AAAFAAEAAAA=")
+tile_map_data = PackedByteArray("AAARAAEAAAAFAAAAAAAQAAEAAAACAAAAAAAPAAEAAAACAAAAAAAOAAEAAAACAAAAAAANAAEAAAACAAAAAAAMAAEAAAAAAAAAAAAJAAUAAAACAAAAAAAIAAUAAAACAAAAAAAHAAUAAAACAAAAAAAGAAUAAAAAAAEAAAAEAAUAAAAIAAIAAAACAAUAAAABAAEAAAAAAAUAAAACAAAAAAD+/wUAAAAGAAEAAAAGAAQAAAACAAEAAAAGAAMAAAACAAEAAAAGAAIAAAACAAEAAAAGAAEAAAABAAAAAAAFAAEAAAACAAAAAAAEAAEAAAACAAAAAAADAAEAAAACAAAAAAACAAEAAAAAAAAAAAACAAIAAAACAAEAAAACAAMAAAACAAEAAAACAAQAAAACAAEAAAD//wUAAAACAAAAAAABAAUAAAACAAAAAAAMAAIAAAACAAEAAAAMAAQAAAACAAEAAAAMAAUAAAABAAEAAAAKAAUAAAACAAAAAAALAAUAAAACAAAAAAAMAAMAAAACAAEAAAA=")
 tile_set = ExtResource("1_7tfo5")
 script = ExtResource("3_n70oy")
 
@@ -38,16 +36,6 @@ waves = Array[ExtResource("3_82ibk")]([ExtResource("4_jbbdg"), ExtResource("5_iw
 wait_time = 2.0
 autostart = true
 
-[node name="MobSpawner2" type="Node2D" parent="."]
-position = Vector2(1600, -64)
-script = ExtResource("2_naot0")
-waves = Array[ExtResource("3_82ibk")]([ExtResource("4_jbbdg"), ExtResource("5_iwc7u"), ExtResource("6_s2j7w")])
-spawner_index = 1
-
-[node name="SpawnTimer" type="Timer" parent="MobSpawner2"]
-wait_time = 2.0
-autostart = true
-
 [node name="PlayerHurtBox" type="Area2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(-192, 704)
@@ -57,16 +45,8 @@ collision_layer = 2
 position = Vector2(20, 0)
 shape = SubResource("CircleShape2D_82ibk")
 
-[node name="Turret" type="Sprite2D" parent="."]
-position = Vector2(1470, 251)
-texture = ExtResource("9_s2j7w")
-script = ExtResource("9_iwc7u")
-metadata/_custom_type_script = "uid://y7hv1qn4dexx"
-
 [node name="CoinCollector" parent="." instance=ExtResource("11_n70oy")]
 
 [connection signal="child_exiting_tree" from="MobSpawner" to="MobSpawner" method="_on_child_exiting_tree"]
 [connection signal="timeout" from="MobSpawner/SpawnTimer" to="MobSpawner" method="_on_spawn_timer_timeout"]
-[connection signal="child_exiting_tree" from="MobSpawner2" to="MobSpawner2" method="_on_child_exiting_tree"]
-[connection signal="timeout" from="MobSpawner2/SpawnTimer" to="MobSpawner2" method="_on_spawn_timer_timeout"]
 [connection signal="area_entered" from="PlayerHurtBox" to="." method="_on_player_hurt_box_area_entered"]

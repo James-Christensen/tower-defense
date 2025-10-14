@@ -1,2 +1,4 @@
 res://mobs/zombie/Zombie.tscn
 res://map/tileset.tres
+res://autoload/TurretInfoPanel.tscn
+res://mobs/tower_defense.tscn
