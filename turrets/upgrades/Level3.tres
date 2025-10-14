@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_mccaj")
+cost = 200
 mob_detection_radius_change = 30.0
 replacement_weapon = ExtResource("1_tvfk8")
 metadata/_custom_type_script = "uid://2ycpfok7dspb"

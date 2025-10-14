@@ -19,6 +19,7 @@ config/icon="res://icon.png"
 
 PlayerUI="*res://autoload/PlayerUI.tscn"
 UpgradeDatabase="*res://autoload/upgrade_database.gd"
+TurretCatalog="*res://autoload/turret_catalog.gd"
 
 [debug]
 

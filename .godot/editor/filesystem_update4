@@ -1,9 +1,2 @@
-res://mobs/Mob.tscn
-res://map/tileset.tres
 res://mobs/zombie/Zombie.tscn
-res://mobs/zombie/zombie.gd
-res://mobs/tower_defense.tscn
-res://waves/wave_1.tres
-res://waves/wave_2.tres
-res://waves/wave_3.tres
-res://zombie_base.tscn
+res://map/tileset.tres

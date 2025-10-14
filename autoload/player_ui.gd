@@ -12,7 +12,7 @@ signal quit_pressed
 	set(value):
 		remaining_mobs = value
 		mob_counter.text = "%03d" % remaining_mobs
-		
+
 @onready var mob_counter: Label = %MobCounter
 
 @export var player_health:= 5:
@@ -26,6 +26,11 @@ var hearts: Array[TextureRect] = []
 var coins:= 999: set = set_coins
 @onready var coin_icon: TextureRect = %CoinIcon
 @onready var coin_label: Label = %CoinLabel
+
+@onready var buy_button: Button = %BuyButton
+@onready var turret_shop: TurretShopPanel = %TurretShopPanel
+@onready var turret_info: TurretInfoPanel = %TurretInfoPanel
+@onready var placement_tooltip: PlacementTooltip = %PlacementTooltip
 
 	
 # Called when the node enters the scene tree for the first time.
@@ -58,8 +63,14 @@ func _on_restart_button_pressed() -> void:
 
 func _on_quit_button_pressed() -> void:
 	quit_pressed.emit()
-	
-	
+
+func _on_buy_button_pressed() -> void:
+	if turret_shop.visible:
+		turret_shop.hide_shop()
+	else:
+		turret_shop.show_shop()
+
+
 func show_next_wave(message: String):
 	next_wave.text = message
 	next_wave.show()

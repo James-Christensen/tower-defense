@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("2_dx6x2")
-num_mobs = 7
-spawn_rate = 1.5
+num_mobs = 5
 mob_scene = ExtResource("1_7hhdp")
+wave_delay = 4.0
 metadata/_custom_type_script = "uid://dqblvldroi1ev"

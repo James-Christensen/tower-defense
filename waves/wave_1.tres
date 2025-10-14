@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_ytakx")
-num_mobs = 5
+num_mobs = 3
 mob_scene = ExtResource("1_wigcn")
+wave_delay = 4.0
 metadata/_custom_type_script = "uid://dqblvldroi1ev"

@@ -17,7 +17,7 @@ func animate_to_ui() -> void:
 		tween.kill()
 
 	set_deferred("monitorable", false)
-	var target_position := PlayerUI.get_coin_ui_position()
+	var target_position = PlayerUI.get_coin_ui_position()
 
 	tween = create_tween()
 	tween.set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)

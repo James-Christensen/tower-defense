@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://djy3pk836ng4n"]
+[gd_scene load_steps=15 format=3 uid="uid://djy3pk836ng4n"]
 
 [ext_resource type="Script" uid="uid://hiqqm00cdlsq" path="res://autoload/player_ui.gd" id="1_blooh"]
 [ext_resource type="Texture2D" uid="uid://cr7d6dy88ohwf" path="res://ui/health_bar_background.png" id="1_rssxj"]
@@ -9,6 +9,48 @@
 [ext_resource type="StyleBox" uid="uid://c6elub28iq75d" path="res://autoload/Hover.tres" id="7_ai6na"]
 [ext_resource type="StyleBox" uid="uid://c30smujdh1eg6" path="res://autoload/Focused.tres" id="7_yilhb"]
 [ext_resource type="Texture2D" uid="uid://cgaxlo44jh6vm" path="res://mobs/coin.png" id="9_yj2qs"]
+[ext_resource type="Script" path="res://autoload/placement_tooltip.gd" id="12_placement_tooltip"]
+[ext_resource type="PackedScene" uid="uid://b5wxn3g7hxvyg" path="res://autoload/TurretInfoPanel.tscn" id="10_info_panel"]
+[ext_resource type="PackedScene" uid="uid://c2mgpg2dpewc0" path="res://autoload/TurretShopPanel.tscn" id="11_turret_shop"]
+
+[sub_resource type="Animation" id="Animation_yj2qs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(521.5, 474)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_ai6na"]
 resource_name = "reveal"
@@ -49,45 +91,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1), Vector2(1.1, 1.1)]
-}
-
-[sub_resource type="Animation" id="Animation_yj2qs"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(521.5, 474)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cjn75"]
@@ -307,6 +310,27 @@ theme_override_constants/shadow_outline_size = 4
 theme_override_font_sizes/font_size = 32
 text = "00"
 
+[node name="BuyButton" type="Button" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+layout_mode = 0
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -140.0
+offset_top = -80.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_hover_color = Color(0.46666667, 0.7372549, 0.9607843, 0.9019608)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("5_uqd3i")
+theme_override_styles/pressed = ExtResource("5_60lce")
+theme_override_styles/hover = ExtResource("7_ai6na")
+text = "BUY"
+
 [node name="NextWave" type="Label" parent="."]
 unique_name_in_owner = true
 visible = false
@@ -339,5 +363,40 @@ libraries = {
 }
 autoplay = "reveal"
 
+[node name="TurretInfoPanel" parent="." instance=ExtResource("10_info_panel")]
+unique_name_in_owner = true
+layout_mode = 0
+
+[node name="TurretShopPanel" parent="." instance=ExtResource("11_turret_shop")]
+unique_name_in_owner = true
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 280.0
+offset_bottom = 360.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="PlacementTooltip" type="Label" parent="."]
+unique_name_in_owner = true
+z_index = 200
+layout_mode = 0
+offset_right = 120.0
+offset_bottom = 26.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 18
+text = "100 coins"
+script = ExtResource("12_placement_tooltip")
+
 [connection signal="pressed" from="GameOverMenu/MarginContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="GameOverMenu/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="BuyButton" to="." method="_on_buy_button_pressed"]

@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_u5dnb")
+cost = 150
 attack_rate_change = 0.5
 replacement_weapon = ExtResource("1_2dni4")
 metadata/_custom_type_script = "uid://2ycpfok7dspb"

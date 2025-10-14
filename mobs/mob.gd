@@ -29,7 +29,6 @@ func take_damage(amount: float, damage_source_position: Vector2 = global_positio
 	animation_player.play("damage")
 	
 	# Calculate angle from projectile to mob
-	var hit_angle = global_position.angle_to_point(damage_source_position)
 	# Or for knockback direction:
 	var knockback_direction = (global_position - damage_source_position).normalized()
 	var knockback_distance = 20.0
