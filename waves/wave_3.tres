@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Wave" load_steps=3 format=3 uid="uid://cmxqgtrku8jdw"]
 
-[ext_resource type="PackedScene" uid="uid://xq6avsjhn6fv" path="res://mobs/Mob.tscn" id="1_7g8yy"]
+[ext_resource type="PackedScene" uid="uid://cfomut8sdbeh3" path="res://mobs/zombie/Zombie.tscn" id="1_7g8yy"]
 [ext_resource type="Script" uid="uid://dqblvldroi1ev" path="res://mobs/wave.gd" id="2_rsba1"]
 
 [resource]

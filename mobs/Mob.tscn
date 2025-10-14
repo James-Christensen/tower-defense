@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://xq6avsjhn6fv"]
+[gd_scene load_steps=13 format=3 uid="uid://xq6avsjhn6fv"]
 
 [ext_resource type="Texture2D" uid="uid://c06dsq2gfbcd8" path="res://mobs/mouse_01.png" id="1_ceqoi"]
 [ext_resource type="Script" uid="uid://8gaiiwo8sx0m" path="res://mobs/mob.gd" id="1_jr74q"]
+[ext_resource type="Texture2D" uid="uid://0bgaw6cyhrsb" path="res://turrets/weapons/particle_smoke.png" id="3_h2fly"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jr74q"]
 radius = 45.54119
@@ -20,6 +21,94 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
+[sub_resource type="Animation" id="Animation_h2fly"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_jr74q"]
+resource_name = "damage"
+length = 0.3
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0.05490196, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cjqf2"]
+_data = {
+&"RESET": SubResource("Animation_h2fly"),
+&"damage": SubResource("Animation_jr74q")
+}
+
+[sub_resource type="Curve" id="Curve_h2fly"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0.069597065, -1), 0.0, 0.0, 0, 0, Vector2(0.29670328, -0.8966563), 0.0, 0.0, 0, 0, Vector2(1, -1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_cjqf2"]
+curve = SubResource("Curve_h2fly")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jr74q"]
+lifetime_randomness = 0.35
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 5.0
+angle_min = -19.99999
+angle_max = 20.000011
+spread = 180.0
+initial_velocity_min = 200.0
+initial_velocity_max = 416.4
+orbit_velocity_min = -1.2479999
+orbit_velocity_max = 1.0130001
+gravity = Vector3(0, 0, 0)
+scale_min = 0.01
+scale_max = 0.099999994
+hue_variation_curve = SubResource("CurveTexture_cjqf2")
+
 [node name="Mob" type="Area2D"]
 collision_mask = 2
 script = ExtResource("1_jr74q")
@@ -28,6 +117,7 @@ script = ExtResource("1_jr74q")
 texture = ExtResource("1_ceqoi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_jr74q")
 
 [node name="BarPivot" type="Node2D" parent="."]
@@ -45,3 +135,20 @@ step = 1.0
 value = 50.0
 show_percentage = false
 metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_cjqf2")
+}
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 100
+amount_ratio = 0.4
+texture = ExtResource("3_h2fly")
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+randomness = 0.79
+trail_lifetime = 0.01
+process_material = SubResource("ParticleProcessMaterial_jr74q")

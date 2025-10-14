@@ -1,0 +1,47 @@
+[gd_scene load_steps=9 format=3 uid="uid://dh11c86sxjkgp"]
+
+[ext_resource type="Texture2D" uid="uid://dqq161y3wtbwc" path="res://cutout/Right Arm.png" id="1_wp7xu"]
+[ext_resource type="Texture2D" uid="uid://jljgf2o1x7lq" path="res://cutout/Right Hand.png" id="2_huvs6"]
+[ext_resource type="Texture2D" uid="uid://dw6gibqnso8ut" path="res://cutout/Right Leg.png" id="3_8kuiq"]
+[ext_resource type="Texture2D" uid="uid://yn4lrv6phmif" path="res://cutout/Left Leg.png" id="4_6yl6t"]
+[ext_resource type="Texture2D" uid="uid://c80n6d3qfss8t" path="res://cutout/Body.png" id="5_mpbhm"]
+[ext_resource type="Texture2D" uid="uid://g2c4teqt505i" path="res://cutout/Head.png" id="6_avlpl"]
+[ext_resource type="Texture2D" uid="uid://smk5cl4p73aa" path="res://cutout/Left Arm.png" id="7_fyb48"]
+[ext_resource type="Texture2D" uid="uid://duvifuoncl0m3" path="res://cutout/Left Hand.png" id="8_xa073"]
+
+[node name="Zombie_Base" type="Node2D"]
+
+[node name="LegR" type="Sprite2D" parent="."]
+position = Vector2(47, 92)
+texture = ExtResource("3_8kuiq")
+
+[node name="LegL" type="Sprite2D" parent="."]
+position = Vector2(-29, 92)
+texture = ExtResource("4_6yl6t")
+
+[node name="ArmR2" type="Sprite2D" parent="."]
+position = Vector2(52, -43.999996)
+rotation = -0.4478769
+texture = ExtResource("7_fyb48")
+
+[node name="HandR" type="Sprite2D" parent="ArmR2"]
+position = Vector2(17, 54)
+texture = ExtResource("8_xa073")
+
+[node name="Body" type="Sprite2D" parent="."]
+texture = ExtResource("5_mpbhm")
+
+[node name="Head" type="Sprite2D" parent="."]
+position = Vector2(0, -268)
+texture = ExtResource("6_avlpl")
+
+[node name="ArmL" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(-53, -44)
+texture = ExtResource("1_wp7xu")
+
+[node name="Handl" type="Sprite2D" parent="ArmL"]
+z_as_relative = false
+position = Vector2(-6, 47.000004)
+rotation = 0.35530916
+texture = ExtResource("2_huvs6")

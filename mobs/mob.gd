@@ -1,5 +1,6 @@
 @icon("res://icons/icon_mob.svg")
 class_name Mob extends Area2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @export var speed:= 100.0
 
@@ -23,8 +24,19 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	bar_pivot.global_rotation = 0.0
 	
-func take_damage(amount: float) ->void:
+func take_damage(amount: float, damage_source_position: Vector2 = global_position) ->void:
 	set_health(-amount)
+	animation_player.play("damage")
+	
+	# Calculate angle from projectile to mob
+	var hit_angle = global_position.angle_to_point(damage_source_position)
+	# Or for knockback direction:
+	var knockback_direction = (global_position - damage_source_position).normalized()
+	var knockback_distance = 20.0
+	var tween = create_tween()
+	tween.tween_property(self, "position", position + knockback_direction * knockback_distance, 0.15)
+	
+	
 	#Animate HP Changes
 	if health_tween: 
 		health_tween.kill()
@@ -38,7 +50,8 @@ func take_damage(amount: float) ->void:
 
 	if current_health <= 0:
 		die(true)
-		
+
+
 func die(was_killed := false) -> void:
 	if was_killed:
 		for current_index: int in coins:

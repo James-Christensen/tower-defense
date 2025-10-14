@@ -1,10 +1,10 @@
 extends Node
-const LEVEL_1 = preload("uid://jbcpr0nyfo72")
-const LEVEL_2 = preload("uid://dtjncf7kuwh04")
-const LEVEL_3 = preload("uid://du5l55g0qo8ul")
+const LEVEL_1 = preload("res://turrets/upgrades/level1.tres")
+const LEVEL_2 = preload("res://turrets/upgrades/level2.tres")
+const LEVEL_3 = preload("res://turrets/upgrades/Level3.tres")
+const ROCKET_LAUNCHER = preload("res://turrets/upgrades/rocket_launcher.tres")
 
 
-const ROCKET_LAUNCHER = preload("uid://sc5sxy7vmdc7")
 
 func get_upgrades_for_weapon(weapon: Weapon, turret_level: int) -> TurretUpgrade:
 	if weapon is SimpleCannon or SimpleCannonOne:
